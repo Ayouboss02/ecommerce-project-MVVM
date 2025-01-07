@@ -1,0 +1,102 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>shopping_cart_russ</RootNamespace>
+    <UserSecretsId>d5390058-8156-4b80-8563-ce0649982b5e</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\**" />
+    <Compile Remove="Pages\checkout\**" />
+    <Compile Remove="Pages\myorders\**" />
+    <Compile Remove="Pages\wishlist\**" />
+    <Compile Remove="products\**" />
+    <Compile Remove="wwwroot\images\**" />
+    <Compile Remove="wwwroot\assets\NewFolder\**" />
+    <Compile Remove="wwwroot\NewFolder\**" />
+    <Content Remove="Areas\**" />
+    <Content Remove="Pages\checkout\**" />
+    <Content Remove="Pages\myorders\**" />
+    <Content Remove="Pages\wishlist\**" />
+    <Content Remove="products\**" />
+    <Content Remove="wwwroot\images\**" />
+    <Content Remove="wwwroot\assets\NewFolder\**" />
+    <Content Remove="wwwroot\NewFolder\**" />
+    <EmbeddedResource Remove="Areas\**" />
+    <EmbeddedResource Remove="Pages\checkout\**" />
+    <EmbeddedResource Remove="Pages\myorders\**" />
+    <EmbeddedResource Remove="Pages\wishlist\**" />
+    <EmbeddedResource Remove="products\**" />
+    <EmbeddedResource Remove="wwwroot\images\**" />
+    <EmbeddedResource Remove="wwwroot\assets\NewFolder\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder\**" />
+    <None Remove="Areas\**" />
+    <None Remove="Pages\checkout\**" />
+    <None Remove="Pages\myorders\**" />
+    <None Remove="Pages\wishlist\**" />
+    <None Remove="products\**" />
+    <None Remove="wwwroot\images\**" />
+    <None Remove="wwwroot\assets\NewFolder\**" />
+    <None Remove="wwwroot\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs" />
+    <Compile Remove="Data\Migrations\20230318060720_AddedUserCartsTable.cs" />
+    <Compile Remove="Data\Migrations\20230318060720_AddedUserCartsTable.Designer.cs" />
+    <Compile Remove="Helpers\UsersHelper.cs" />
+    <Compile Remove="Helpers\WishlistHelper.cs" />
+    <Compile Remove="Models\Order.cs" />
+    <Compile Remove="Models\UserCart.cs" />
+    <Compile Remove="Models\UserWishlist.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Shared\_LoginPartial.cshtml" />
+    <Content Remove="wwwroot\assets\Basketball.jpeg" />
+    <Content Remove="wwwroot\assets\Micro.jpeg" />
+    <Content Remove="wwwroot\assets\RandyOrten.jpeg" />
+    <Content Remove="wwwroot\assets\Roman.jpeg" />
+    <Content Remove="wwwroot\assets\Shampo.jpeg" />
+    <Content Remove="wwwroot\assets\Smartphone.jpeg" />
+    <Content Remove="wwwroot\assets\Tshirtss.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Properties\ServiceDependencies\ShoppingCartRuss - Web Deploy\mssql3.arm.json" />
+    <Content Include="Properties\ServiceDependencies\ShoppingCartRuss - Web Deploy\profile.arm.json" />
+    <Content Include="Properties\ServiceDependencies\ShoppingCartRuss - Web Deploy\secrets1.arm.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\ShoppingCartRuss - Web Deploy.pubxml.user" />
+    <None Include="Properties\serviceDependencies.local.json.user" />
+    <None Include="Properties\serviceDependencies.ShoppingCartRuss - Web Deploy.json.user" />
+	  <PackageReference Include="Azure.Core" Version="1.30.0" />
+	  <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.0.0" />
+	  <PackageReference Include="Azure.Identity" Version="1.6.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.15" />
+	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.15" />
+	  <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.15" />
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.15" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.15" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.15" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.15" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.15">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\" />
+  </ItemGroup>
+
+
+</Project>

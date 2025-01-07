@@ -1,0 +1,50 @@
+﻿@page
+@model SleekClothing.Pages.admin.categories.IndexModel
+
+@{
+    ViewData["Title"] = "Categories";
+}
+<br />
+<h1>Product Management</h1>
+<h3>Categories</h3>
+<p>
+    <a asp-page="Create" class="btn btn-success">Add a new category</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Categories[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categories[0].Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Categories)
+
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <div class="d-inline-flex gap-2">
+                        <!-- Utiliser d-inline-flex pour éviter que les boutons prennent toute la largeur -->
+                        <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-secondary">Details</a>
+                        <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-info">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

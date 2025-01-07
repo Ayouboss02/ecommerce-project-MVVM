@@ -1,0 +1,87 @@
+﻿@using Microsoft.EntityFrameworkCore
+@using SleekClothing.Helpers
+@using SleekClothing.Models
+@inject SleekClothing.Data.ApplicationDbContext context
+
+@{
+    var products = new List<Product>();
+
+
+
+    // On récupère les produits du panier via les cookies
+
+    products = CartHelper.GetGroupedCartItemsCookie(this.Context.Request);
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Sleek Clothing</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+</head>
+<body>
+    <header>
+        <div class="py-3 text-center bg-white border-bottom">
+            <div class="container">
+                <div class="row gy-3">
+                    <div class="col d-flex align-items-center d-none d-sm-block ">
+                        <a href="/" class="float-start fs-5 fw-semibold navbar-brand text-nowrap">
+                            Happy Store
+                        </a>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex justify-content-end w-100">
+                            <a href="/cart" class="btn btn-outline-primary position-relative">
+                                <i class="fas fa-shopping-cart me-2"></i> Cart
+
+                                @if (CartHelper.GetCartItemsCountCookie(this.Context) > 0)
+
+                                {
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                                        @CartHelper.GetCartItemsCountCookie(this.Context)
+                                    </span>
+                                }
+                             </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border-bottom">
+            <nav class="container navbar navbar-expand-lg navbar-light bg-white">
+                <ul class="d-flex flex-row align-items-center navbar-nav me-auto mb- mb-lg-0">
+                    <li class="px-3 nav-item">
+                        <a class="nav-link text-dark" aria-current="page" href="/">Home</a>
+                    </li>
+                
+                    <li class="px-3 nav-item">
+                        <a class="nav-link text-dark" href="/products">All products</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            <partial name="_Toast" />
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Sidebar (Offcanvas) -->
+    
+    <!-- Footer -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

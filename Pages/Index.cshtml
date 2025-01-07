@@ -1,0 +1,90 @@
+﻿@page
+@model SleekClothing.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+@* Jumbotron avec overlay *@
+<div class="bg-light text-dark py-5" style="background: url('/images/banner-bg.jpg') no-repeat center center; background-size: cover;">
+    <div class="container text-center position-relative">
+        <div class="p-4 rounded shadow-sm" style="background-color: rgba(255, 255, 255, 0.85);">
+            <h1 class="display-4 fw-bold mb-4">
+                Discover the Best Products & <br />
+                Top Brands in Our Store
+            </h1>
+            <p class="lead mb-4">
+                High Quality Products, Great Prices, Excellent Service. Shop Now!
+            </p>
+            <a href="/products" class="btn btn-warning btn-lg px-4 py-2 shadow-sm rounded-pill">
+                Browse Products
+            </a>
+        </div>
+    </div>
+</div>
+
+@* New Arrivals Section *@
+<section class="my-5">
+    <div class="container">
+        <h1 class="mb-4">New Arrivals</h1>
+        <hr />
+
+        <div class="row">
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 d-flex">
+                    <div class="card w-100 border-0 my-2 shadow-sm">
+                        @* Card Image *@
+                        <img src="@product.ImageLocation" class="card-img-top" style="aspect-ratio: 1 / 1; object-fit: cover; height: 200px;" alt="@product.Name">
+
+                        @* Card Content *@
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@product.Name</h5>
+                            <div class="mt-2">
+                                @if (product.HasDiscount)
+
+                                {
+                                    <p class="text-success fw-bold mb-0">@product.Discount% OFF</p>
+                                    <div class="d-flex gap-2">
+                                        <span class="text-decoration-line-through">
+                                            @product.Price.ToString("c2")
+                                        </span>
+                                        <span class="fw-bold">
+                                            @product.PriceAfterDiscount.ToString("c2")
+                                        </span>
+                                    </div>
+                                }
+
+                                else
+
+                                {
+                                    <span>@product.Price.ToString("c2")</span>
+                                }
+
+                                @if (product.IsOutOfStock)
+
+                                {
+                                    <p class="text-warning mb-0 fw-bold">OUT OF STOCK</p>
+                                }
+                            </div>
+                        </div>
+
+                        @* Buttons *@
+                        <div class="card-footer d-flex justify-content-between">
+                            <a class="btn btn-outline-primary" asp-page="/products/Details" asp-route-id="@product.Id">Details</a>
+                            <form method="post" class="d-flex gap-1 h-auto align-items-center justify-content-center bg-white border-0 py-2">
+                                <button asp-page-handler="AddToCart" asp-route-productId="@product.Id" class="btn btn-outline-info border px-2 pt-2 icon-hover">
+                                    <i class="fas fa-cart-plus fa-lg text-secondary px-1"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="d-flex justify-content-center mt-4">
+            <a href="/products" class="btn btn-primary shadow-0">View All Products</a>
+        </div>
+    </div>
+</section>

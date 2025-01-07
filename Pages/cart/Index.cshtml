@@ -1,0 +1,69 @@
+﻿@page
+@model SleekClothing.Pages.cart.IndexModel
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h1 class="pt-3">Cart</h1>
+
+@if (Model.Products.Count > 0)
+
+{
+
+    foreach (var product in Model.Products)
+
+    {
+                <div class="card m-4">
+                    <div class="row g-0">
+                        <div class="col">
+                            <img src="@product.ImageLocation" class="h-100 img-fluid rounded-start" alt="@product.Name">
+                        </div>
+                        <div class="col-9">
+                            <div class="card-body">
+                                <h5 class="card-title">@product.Name</h5>
+                                <form method="post" class="d-flex">
+                                    <p class="card-text my-2">Quantity: @product.CartQuantity</p>
+                                    <button asp-page-handler="RemoveFromCart"
+                                            asp-route-productId="@product.Id"
+                                            class="btn btn-outline-danger border mx-3 px-2 pt-2 icon-hover">
+                                        <i class="fas fa-minus fa-lg px-1"></i>
+                                    </button>
+                                    <button asp-page-handler="AddToCart"
+                                            asp-route-productId="@product.Id"
+                                            class="btn btn-outline-success border px-2 pt-2 icon-hover">
+                                        <i class="fas fa-plus fa-lg px-1"></i>
+                                    </button>
+                                    <!-- Button pour supprimer le produit du panier -->
+                                    <button asp-page-handler="DeleteFromCart"
+                                            asp-route-productId="@product.Id"
+                                            class="btn btn-outline-warning border mx-3 px-2 pt-2 icon-hover">
+                                        <i class="fas fa-trash fa-lg px-1"></i>
+                                    </button>
+                                </form>
+
+                                <p class="card-text my-2">Category: @product.Category.Name</p>
+                                <p class="card-text my-2">@product.PriceAfterDiscount.ToString("c2")</p>
+                            </div>
+                        </div>
+                    </div>
+            @if (product.CartQuantity > 0)
+
+            {
+                            <span class="position-absolute top-0 start-100 translate-middle fs-4 badge rounded-pill bg-primary">
+                    @product.CartQuantity
+                            </span>
+            }
+                </div>
+    }
+        <p class="fw-light fs-4 mx-4">Total @Model.CartTotal</p>
+        <span class="fs-6"><a href="/products">Browse products</a></span>
+}
+
+else
+
+{
+        <div class="d-flex flex-column align-items-center justify-content-center align my-5">
+            <h1>Le panier est vide</h1>
+            <a href="/products">All products</a>
+        </div>
+}

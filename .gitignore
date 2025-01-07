@@ -1,0 +1,15 @@
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build files
+bin/
+obj/
+
+# Others
+*.log
+*.vsidx
+*.vscode/
